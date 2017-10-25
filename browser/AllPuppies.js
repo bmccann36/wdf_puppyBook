@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class AllPuppies extends React.Component {
+export default class AllPuppies extends Component {
+  constructor(props) {
+    super(props)
+  }
 
-  render () {
+  componentDidMount(){
+    this.props.onLoadPuppies()
+  }
+
+  render() {
+    console.log(this.props)
     return (
       <div>
         <ul className="list-unstyled">
-          <li><a href="#">PUPPY NAME GOES HERE</a></li>
-          <li><a href="#">PUPPY NAME GOES HERE</a></li>
-          <li><a href="#">PUPPY NAME GOES HERE</a></li>
+          {this.props.allPuppies.map(puppy => {
+            return (<li key={puppy.id} ><a href="#">{puppy.name}</a></li>)
+          })
+          }
         </ul>
       </div>
     )
